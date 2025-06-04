@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'locallift.urls'
+ROOT_URLCONF = 'localblast.urls'
 
 TEMPLATES = [
     {
@@ -66,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'locallift.wsgi.application'
+WSGI_APPLICATION = 'localblast.wsgi.application'
 
 
 # Database

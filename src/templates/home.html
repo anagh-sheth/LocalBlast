@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
+{% block title %}
+{{ block.super }} - Home Page
+{% endblock title %}
+
+{% block page_title %}
+Home Page - {{ block.super }}
+{% endblock page_title %}
+
 {% block content %}
 <p> Hello again!</p>
+
+{% include "snippets/welcome-user-msg.html" %}
+
 {% endblock %}
