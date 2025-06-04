@@ -87,4 +87,5 @@ MIT License. Feel free to fork, remix, or build on it — just give credit!
 ## 📬 Contact
 
 Built by Anagh Sheth
+
 Email: anagh.sheth@gmail.com
