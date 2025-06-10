@@ -1,5 +1,5 @@
 import requests
-from pathlib import Path
+from pathlib import Path as PATH
 
 def download_to_local(url:str, out_path:PATH, parent_mkdir:bool=True):
     if not isinstance(out_path, PATH):
