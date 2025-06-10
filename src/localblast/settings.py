@@ -131,7 +131,18 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+# source for python manage.py collectstatic
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIR
+]
+
+# output for python manage.py collectstatic
+STATIC_ROOT = BASE_DIR.parent / "local-cdn"
+
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
