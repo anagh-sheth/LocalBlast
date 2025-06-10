@@ -7,3 +7,4 @@ whitenoise==6.6.0
 python-decouple
 psycopg[binary]
 dj-database-url
+requests
