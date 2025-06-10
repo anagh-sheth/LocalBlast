@@ -51,3 +51,6 @@ nosetests.xml
 coverage.xml
 *.cover
 .pytest_cache/ 
+
+# Vendor folder
+src/staticfiles/vendors
