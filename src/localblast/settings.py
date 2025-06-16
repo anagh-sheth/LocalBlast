@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     
     # my apps
+    "commando",
     "visits",
 ]
 
@@ -83,7 +84,7 @@ DATABASES = {
     }
 }
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast = int, default=30)
-DATABASE_URL = config("DATABASE_URL", cast = str)
+DATABASE_URL = config("DATABASE_URL", default=None)
 
 if DATABASE_URL is not None:
     import dj_database_url
@@ -130,8 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_BASE_DIR.mkdir(exist_ok=True, parents=True)
 STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
 
 # source for python manage.py collectstatic
