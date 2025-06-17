@@ -7,6 +7,7 @@ import helpers
 STATICFILES_VENDOR_DIR = getattr(settings, "STATICFILES_VENDOR_DIR")
 
 VENDOR_STATICFILES = {
+    "tailwind.min.css": "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css",
     "flowbite.min.css": "https://cdnjs.cloudfare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css",
     "flowbite.min.js": "https://cdnjs.cloudfare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js",
 }
