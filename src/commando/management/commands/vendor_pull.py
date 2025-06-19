@@ -10,6 +10,7 @@ VENDOR_STATICFILES = {
     "tailwind.min.css": "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css",
     "flowbite.min.css": "https://cdnjs.cloudfare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css",
     "flowbite.min.js": "https://cdnjs.cloudfare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js",
+    "flowbite.min.js.map": "https://cdnjs.cloudfare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js.map",
 }
 
 class Command(BaseCommand):
