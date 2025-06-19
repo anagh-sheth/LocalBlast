@@ -54,3 +54,5 @@ coverage.xml
 
 # Vendor folder
 src/staticfiles/vendors
+
+local-cdn/
