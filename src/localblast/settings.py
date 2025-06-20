@@ -171,7 +171,7 @@ STATIC_ROOT = BASE_DIR.parent / "local-cdn"
 
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
