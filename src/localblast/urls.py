@@ -16,10 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from auth import views as auth_views
 
-from localblast.views import home_page_view
+from localblast.views import home_view, about_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page_view),
+    path('', home_view),
+    path('about/', about_view),
+    path('login/', auth_views.login_view),
 ]
