@@ -64,6 +64,10 @@ INSTALLED_APPS = [
     # my apps
     "commando",
     "visits",
+    # third party apps
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
 ]
 
 MIDDLEWARE = [
@@ -74,6 +78,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -137,6 +142,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Django Allauth config
+
+ACCOUNT_LOGIN_METHODS = {'email', 'username'}  # Allow login with email or username
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']  # Required fields for signup
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '[Local Blast]'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
