@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} - About Page
+{% endblock title %}
+
+{% block page_title %}
+About Page - {{ block.super }}
+{% endblock page_title %}
+
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">About LocalBlast</h2>
+
+<p class="mb-4">Welcome to LocalBlast! This is the about page where you can learn more about our services.</p>
+
+{% include "snippets/welcome-user-msg.html" %}
+
+<div class="bg-gray-100 p-4 rounded-lg mt-6">
+    <h3 class="text-lg font-semibold mb-2">Page Statistics</h3>
+    <p>Page visits: {{ page_visit_count }}</p>
+    <p>Total visits across all pages: {{ total_visits }}</p>
+    {% if percent > 0 %}
+    <p>This page represents {{ percent|floatformat:1 }}% of total visits</p>
+    {% endif %}
+</div>
+
+{% endblock %} 
