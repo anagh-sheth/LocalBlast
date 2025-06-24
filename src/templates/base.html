@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>  
-    <title>{% block title %}LocalBlast{% endblock title %}</title>
-    {% include "base/css.html" %}
+<html>
+<head>
+    <title>{% block head_title %}LocalBlast{% endblock head_title %}</title>
+    {% include 'base/css.html' %}
 </head>
 <body>
-    {% include "nav/navbar.html" %}
-    <h1>{% block page_title %}LocalBlast{% endblock page_title %}</h1>
+    {% include 'nav/navbar.html' %}
     {% block content %}
-    {% endblock %}
-    {% include "base/js.html" %}
+    {% endblock content %}
+    {% include 'base/js.html' %}
 </body>
 </html>

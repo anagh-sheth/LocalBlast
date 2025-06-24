@@ -65,9 +65,10 @@ INSTALLED_APPS = [
     "commando",
     "visits",
     # third party apps
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
 ]
 
 MIDDLEWARE = [
