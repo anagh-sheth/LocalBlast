@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from auth import views as auth_views
 
-from localblast.views import home_view, about_view
+from localblast.views import home_view, about_view, pw_protected_view
 
 
 urlpatterns = [
@@ -28,6 +28,7 @@ urlpatterns = [
     path('about/', about_view),
 
     path('accounts/', include('allauth.urls')),
+    path('protected/', pw_protected_view),
     path('admin/', admin.site.urls),
 
 ]
