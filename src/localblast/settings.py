@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     # my apps
     "commando",
     "visits",
+    "profiles",
     # third party apps
     'allauth',
     'allauth.account',
