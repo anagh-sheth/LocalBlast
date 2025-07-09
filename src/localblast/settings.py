@@ -60,12 +60,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "whitenoise.runserver_nostatic",
-    
+
     # my apps
     "commando",
     "visits",
     "profiles",
     "subscriptions",
+    "customers",
     # third party apps
     'allauth',
     'allauth.account',

@@ -3,6 +3,8 @@ from django.contrib.auth.models import Group, Permission
 from django.db.models.signals import post_save
 
 from django.conf import settings
+import helpers.billing
+
 
 User = settings.AUTH_USER_MODEL
 
@@ -20,6 +22,7 @@ class Subscription(models.Model):
     permissions = models.ManyToManyField(Permission, 
                                          limit_choices_to=
                                          {"content_type__app_label": "subscriptions", "codename__in": [perm[0] for perm in SUBSCRIPTION_PERMISSIONS]})
+    stripe_id = models.CharField(max_length=120, null=True, blank=True)
 
     def __str__(self):
         return f"{self.name}"
@@ -27,6 +30,54 @@ class Subscription(models.Model):
 
     class Meta:
         permissions = SUBSCRIPTION_PERMISSIONS
+
+    def save(self, *args, **kwargs):
+        if not self.stripe_id:
+            stripe_id = helpers.billing.create_product(name = self.name,
+                                                        metadata = {"subscription_plan_id": self.id}, 
+                                                        raw=False)
+            self.stripe_id = stripe_id
+        super().save(*args, **kwargs)
+
+
+class SubscriptionPrice(models.Model):
+    class IntervalChoices(models.TextChoices):
+        MONTHLY  = "month", "Monthly"
+        YEARLY = "year", "Yearly"
+
+    subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True)
+    stripe_id = models.CharField(max_length=120, null=True, blank=True)
+    interval = models.CharField(max_length=120, default= IntervalChoices.MONTHLY, choices = IntervalChoices.choices)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=99.99)
+
+    @property
+    def stripe_currency(self):
+        return "usd"
+    
+    @property
+    def stripe_price(self):
+        # remove decimal places
+        return self.price * 100
+
+    @property
+    def product_stripe_id(self):
+        if not self.subscription:
+            return None
+        return self.subscription.stripe_id
+    
+
+    def save(self, *args, **kwargs):
+        if (self.stripe_id is None and self.product_stripe_id is not None):
+            
+            stripe_id = helpers.billing.create_price(currency = self.stripe_currency,
+                                unit_amount = self.stripe_price,
+                                interval = self.interval,
+                                product = self.product_stripe_id,
+                                metadata = {"subscription_plan_price_id": self.id},
+                                raw = False)
+            self.stripe_id = stripe_id
+        super().save(*args, **kwargs)   
+
 
 class UserSubscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
