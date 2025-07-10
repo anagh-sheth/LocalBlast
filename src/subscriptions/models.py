@@ -49,6 +49,8 @@ class SubscriptionPrice(models.Model):
     stripe_id = models.CharField(max_length=120, null=True, blank=True)
     interval = models.CharField(max_length=120, default= IntervalChoices.MONTHLY, choices = IntervalChoices.choices)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=99.99)
+    order = models.IntegerField(default=-1)
+    featured = models.BooleanField(default=True)
 
     @property
     def stripe_currency(self):
@@ -57,7 +59,7 @@ class SubscriptionPrice(models.Model):
     @property
     def stripe_price(self):
         # remove decimal places
-        return self.price * 100
+        return int(self.price * 100)
 
     @property
     def product_stripe_id(self):
