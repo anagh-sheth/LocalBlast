@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} - Pricing Page
+{% endblock title %}
+
+{% block page_title %}
+Pricing - {{ block.super }}
+{% endblock page_title %}
+
+{% block content %}
+<section class="bg-white dark:bg-gray-900 min-h-screen">
+    <div class="py-12 px-4 mx-auto max-w-screen-xl lg:py-20 lg:px-6">
+        <div class="mx-auto max-w-screen-md text-center mb-12 lg:mb-16">
+            <h2 class="mb-6 text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">Choose the perfect plan for your business</h2>
+            <p class="mb-8 font-light text-gray-500 sm:text-xl dark:text-gray-400">Start with our Basic plan and upgrade to Pro when you need more features and capabilities.</p>
+            
+            <!-- Pricing Toggle -->
+            <div class="flex items-center justify-center space-x-4 mb-12">
+                <span class="text-lg font-medium text-gray-900 dark:text-white">Monthly</span>
+                <button id="pricing-toggle" class="relative inline-flex h-8 w-14 items-center rounded-full bg-gray-200 dark:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" role="switch" aria-checked="false">
+                    <span id="toggle-slider" class="inline-block h-6 w-6 transform rounded-full bg-white transition-transform duration-200 ease-in-out translate-x-1 shadow-md"></span>
+                </button>
+                <span class="text-lg font-medium text-gray-900 dark:text-white">Yearly</span>
+                <span class="text-sm text-green-600 dark:text-green-400 font-medium bg-green-100 dark:bg-green-900 px-3 py-1 rounded-full">Save 20%</span>
+            </div>
+        </div>
+        
+        <!-- Monthly Plans -->
+        <div id="monthly-plans" class="space-y-8 lg:grid lg:grid-cols-2 sm:gap-8 xl:gap-12 lg:space-y-0 max-w-6xl mx-auto">
+            {% for price in monthly_qs %}
+            <!-- Pricing Card -->
+            <div class="flex flex-col p-8 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xl border border-gray-200 shadow-xl dark:border-gray-600 xl:p-10 dark:bg-gray-800 dark:text-white {% if price.subscription.name == 'Pro' %}ring-2 ring-blue-600{% endif %} h-full min-h-[600px]">
+                {% if price.subscription.name == 'Pro' %}
+                <div class="mb-6">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full dark:bg-blue-900 dark:text-blue-300">Most Popular</span>
+                </div>
+                {% else %}
+                <div class="mb-6 h-12"></div>
+                {% endif %}
+                <h3 class="mb-6 text-3xl font-bold">{{ price.subscription.name }} Plan</h3>
+                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400 mb-8">{{ price.display_sub_subtitle }}</p>
+                <div class="flex justify-center items-baseline my-10">
+                    <span class="mr-2 text-6xl font-extrabold">${{ price.price }}</span>
+                    <span class="text-xl text-gray-500 dark:text-gray-400">/ {{price.interval}}</span>
+                </div>
+                <!-- List -->
+                <ul role="list" class="mb-10 space-y-5 text-left flex-grow">
+                    {% if price.subscription.name == 'Basic' %}
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Basic features included</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Email support</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">1 user</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Basic analytics</span>
+                    </li>
+                    {% elif price.subscription.name == 'Pro' %}
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Everything in Basic</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Priority support</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Up to 10 users</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Advanced analytics</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">API access</span>
+                    </li>
+                    {% else %}
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">{{ price.subscription.name }} features</span>
+                    </li>
+                    {% endif %}
+                </ul>
+                <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-lg px-8 py-4 text-center dark:text-white dark:focus:ring-blue-900 transition-colors">Get started</a>
+            </div>
+            {% empty %}
+            <!-- No monthly pricing plans available -->
+            <div class="col-span-2 text-center">
+                <p class="text-gray-500 dark:text-gray-400">No monthly pricing plans are currently available.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Yearly Plans -->
+        <div id="yearly-plans" class="space-y-8 lg:grid lg:grid-cols-2 sm:gap-8 xl:gap-12 lg:space-y-0 max-w-6xl mx-auto" style="display: none;">
+            {% for price in yearly_qs %}
+            <!-- Pricing Card -->
+            <div class="flex flex-col p-8 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-xl border border-gray-200 shadow-xl dark:border-gray-600 xl:p-10 dark:bg-gray-800 dark:text-white {% if price.subscription.name == 'Pro' %}ring-2 ring-blue-600{% endif %} h-full min-h-[600px]">
+                {% if price.subscription.name == 'Pro' %}
+                <div class="mb-6">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full dark:bg-blue-900 dark:text-blue-300">Most Popular</span>
+                </div>
+                {% else %}
+                <div class="mb-6 h-12"></div>
+                {% endif %}
+                <h3 class="mb-6 text-3xl font-bold">{{ price.subscription.name }} Plan</h3>
+                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400 mb-8">{{ price.display_sub_subtitle }}</p>
+                <div class="flex justify-center items-baseline my-10">
+                    <span class="mr-2 text-6xl font-extrabold">${{ price.price }}</span>
+                    <span class="text-xl text-gray-500 dark:text-gray-400">/ {{price.interval}}</span>
+                </div>
+                <!-- List -->
+                <ul role="list" class="mb-10 space-y-5 text-left flex-grow">
+                    {% if price.subscription.name == 'Basic' %}
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Basic features included</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Email support</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">1 user</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Basic analytics</span>
+                    </li>
+                    {% elif price.subscription.name == 'Pro' %}
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Everything in Basic</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Priority support</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Up to 10 users</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">Advanced analytics</span>
+                    </li>
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">API access</span>
+                    </li>
+                    {% else %}
+                    <li class="flex items-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-6 h-6 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span class="text-lg">{{ price.subscription.name }} features</span>
+                    </li>
+                    {% endif %}
+                </ul>
+                <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-lg px-8 py-4 text-center dark:text-white dark:focus:ring-blue-900 transition-colors">Get started</a>
+            </div>
+            {% empty %}
+            <!-- No yearly pricing plans available -->
+            <div class="col-span-2 text-center">
+                <p class="text-gray-500 dark:text-gray-400">No yearly pricing plans are currently available.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.getElementById('pricing-toggle');
+        const slider = document.getElementById('toggle-slider');
+        const monthlyPlans = document.getElementById('monthly-plans');
+        const yearlyPlans = document.getElementById('yearly-plans');
+        
+        toggle.addEventListener('click', function() {
+            const isYearly = toggle.getAttribute('aria-checked') === 'true';
+            
+            if (isYearly) {
+                // Switch to monthly
+                toggle.setAttribute('aria-checked', 'false');
+                slider.classList.remove('translate-x-8');
+                slider.classList.add('translate-x-1');
+                toggle.classList.remove('bg-blue-600');
+                toggle.classList.add('bg-gray-200', 'dark:bg-gray-700');
+                monthlyPlans.style.display = 'grid';
+                yearlyPlans.style.display = 'none';
+            } else {
+                // Switch to yearly
+                toggle.setAttribute('aria-checked', 'true');
+                slider.classList.remove('translate-x-1');
+                slider.classList.add('translate-x-8');
+                toggle.classList.remove('bg-gray-200', 'dark:bg-gray-700');
+                toggle.classList.add('bg-blue-600');
+                monthlyPlans.style.display = 'none';
+                yearlyPlans.style.display = 'grid';
+            }
+        });
+    });
+  </script>
+
+{% endblock %}

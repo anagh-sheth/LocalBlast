@@ -17,6 +17,7 @@ SUBSCRIPTION_PERMISSIONS = [
 # Create your models here.
 class Subscription(models.Model):
     name = models.CharField(max_length=120)
+    subtitle = models.TextField(null=True, blank=True)
     active = models.BooleanField(default=True)
     groups = models.ManyToManyField(Group)
     permissions = models.ManyToManyField(Permission, 
@@ -64,6 +65,13 @@ class SubscriptionPrice(models.Model):
     class Meta:
         ordering = ["subscription__order", "order", "featured", "-updated"]
 
+    @property
+    def display_sub_subtitle(self):
+        if not self.subscription:
+            return "Plan"
+
+        return self.subscription.subtitle
+    
     @property
     def stripe_currency(self):
         return "usd"
