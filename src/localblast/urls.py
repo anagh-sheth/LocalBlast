@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from auth import views as auth_views
+from checkouts import views as checkout_views
 from subscriptions import views as subscription_views
 
 from localblast.views import home_view, about_view, pw_protected_view, user_only_view, staff_only_view
@@ -27,6 +28,20 @@ urlpatterns = [
   #  path('login/', auth_views.login_view),
   #  path('register/', auth_views.register_view),
     path('about/', about_view),
+    path("checkout/sub-price/<int:price_id>/", 
+            checkout_views.product_price_redirect_view,
+            name='sub-price-checkout'
+            ),
+    path("checkout/start/", 
+            checkout_views.checkout_redirect_view,
+            name='stripe-checkout-start'
+            ),
+    path("checkout/success/", 
+            checkout_views.checkout_finalize_view,
+            name='stripe-checkout-end'
+            ),
+
+
     path('pricing/', subscription_views.subscription_price_view, name='pricing'),
     
     path('accounts/', include('allauth.urls')),

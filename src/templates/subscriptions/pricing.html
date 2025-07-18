@@ -101,7 +101,7 @@ Pricing - {{ block.super }}
                     </li>
                     {% endif %}
                 </ul>
-                <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-lg px-8 py-4 text-center dark:text-white dark:focus:ring-blue-900 transition-colors">Get started</a>
+                <a href="{{ price.get_checkout_url }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-lg px-8 py-4 text-center dark:text-white dark:focus:ring-blue-900 transition-colors">Get started</a>
             </div>
             {% empty %}
             <!-- No monthly pricing plans available -->
@@ -186,7 +186,7 @@ Pricing - {{ block.super }}
                     </li>
                     {% endif %}
                 </ul>
-                <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-lg px-8 py-4 text-center dark:text-white dark:focus:ring-blue-900 transition-colors">Get started</a>
+                <a href="{{ price.get_checkout_url }}" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-lg px-8 py-4 text-center dark:text-white dark:focus:ring-blue-900 transition-colors">Get started</a>
             </div>
             {% empty %}
             <!-- No yearly pricing plans available -->
