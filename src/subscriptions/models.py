@@ -117,6 +117,24 @@ class UserSubscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null = True, blank = True)
     active = models.BooleanField(default=True)
+    stripe_id = models.CharField(max_length=120, null=True, blank=True) 
+    user_cancelled = models.BooleanField(default=False)
+    original_period_start = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    current_period_start = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    current_period_end = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+
+# optional delay to start new subscription in stripe checkout
+    @property
+    def billing_cycle_anchor(self):
+        if not self.current_period_end:
+            return None
+        return int(self.current_period_end.timestamp())
+
+
+    def save(self, *args, **kwargs):
+        if (self.original_period_start is None and self.current_period_start is not None):
+            self.current_period_start = self.original_period_start
+        super().save(*args, **kwargs)
 
 
 def user_sub_post_save(sender, instance, created, *args, **kwargs):
