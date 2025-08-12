@@ -114,6 +114,15 @@ class SubscriptionPrice(models.Model):
 
 
 class UserSubscription(models.Model):
+    class SubscriptionStatus(models.TextChoices):
+        ACTIVE = "active", "Active"
+        CANCELED = "canceled", "Canceled"
+        PAUSED = "paused", "Paused"
+        TRIALING = "trialing", "Trialing"  # 3 days free trial
+        INCOMPLETE = "incomplete", "Incomplete"
+        INCOMPLETE_EXPIRED = "incomplete_expired", "Incomplete Expired"
+        PAST_DUE = "past_due", "Past Due"
+        UNPAID = "unpaid", "Unpaid"
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null = True, blank = True)
     active = models.BooleanField(default=True)
@@ -122,6 +131,7 @@ class UserSubscription(models.Model):
     original_period_start = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     current_period_start = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     current_period_end = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    status = models.CharField(max_length=20, null=True, blank=True, choices=SubscriptionStatus.choices)
 
 # optional delay to start new subscription in stripe checkout
     @property

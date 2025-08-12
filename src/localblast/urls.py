@@ -43,7 +43,7 @@ urlpatterns = [
 
 
     path('pricing/', subscription_views.subscription_price_view, name='pricing'),
-    
+    path('accounts/billing/', subscription_views.user_subscription_view, name='user_subscription'),
     path('accounts/', include('allauth.urls')),
     path('protected/', pw_protected_view),
     path('protected/user-only/', user_only_view),

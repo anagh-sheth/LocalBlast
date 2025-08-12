@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} - Home Page
+{% endblock title %}
+
+{% block page_title %}
+Your Subscription - {{ block.super }}
+{% endblock page_title %}
+
+{% block content %}
+<h1 class="text-center">Your Subscription</h1>
+{% for k, v in subscription.items %}
+<p>{{ k }}: {{ v }}</p>
+{% endfor %}
+
+{% endblock %}
+ 
