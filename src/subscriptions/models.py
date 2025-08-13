@@ -131,8 +131,28 @@ class UserSubscription(models.Model):
     original_period_start = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     current_period_start = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     current_period_end = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    cancel_at_period_end = models.BooleanField(default=False)
     status = models.CharField(max_length=20, null=True, blank=True, choices=SubscriptionStatus.choices)
 
+
+    def get_absolute_url(self):
+        return reverse("user_subscription")
+    
+    @property
+    def plan_name(self):
+        if not self.subscription:
+            return None
+        return self.subscription.name
+    
+
+    def serialize(self):
+        return {
+            "plan_name": self.plan_name,
+            "status": self.status,
+            "current_period_start": self.current_period_start,
+            "current_period_end": self.current_period_end,
+
+        }
 # optional delay to start new subscription in stripe checkout
     @property
     def billing_cycle_anchor(self):

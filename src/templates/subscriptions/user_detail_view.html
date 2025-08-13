@@ -10,9 +10,14 @@ Your Subscription - {{ block.super }}
 
 {% block content %}
 <h1 class="text-center">Your Subscription</h1>
-{% for k, v in subscription.items %}
-<p>{{ k }}: {{ v }}</p>
-{% endfor %}
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Refresh</button>
+</form>
+<p>Status: {{ subscription.status }}</p>
+<p>Plan: {{ subscription.plan_name }}</p>
+<p>Current Period Start: {{ subscription.current_period_start }}</p>
+<p>Current Period End: {{ subscription.current_period_end }}</p>
 
 {% endblock %}
  
