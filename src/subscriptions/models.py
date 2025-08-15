@@ -112,17 +112,18 @@ class SubscriptionPrice(models.Model):
                                                   ).exclude(id = self.id)
             qs.update(featured=False)
 
+class SubscriptionStatus(models.TextChoices):
+    ACTIVE = "active", "Active"
+    CANCELED = "canceled", "Canceled"
+    PAUSED = "paused", "Paused"
+    TRIALING = "trialing", "Trialing"  # 3 days free trial
+    INCOMPLETE = "incomplete", "Incomplete"
+    INCOMPLETE_EXPIRED = "incomplete_expired", "Incomplete Expired"
+    PAST_DUE = "past_due", "Past Due"
+    UNPAID = "unpaid", "Unpaid"
 
 class UserSubscription(models.Model):
-    class SubscriptionStatus(models.TextChoices):
-        ACTIVE = "active", "Active"
-        CANCELED = "canceled", "Canceled"
-        PAUSED = "paused", "Paused"
-        TRIALING = "trialing", "Trialing"  # 3 days free trial
-        INCOMPLETE = "incomplete", "Incomplete"
-        INCOMPLETE_EXPIRED = "incomplete_expired", "Incomplete Expired"
-        PAST_DUE = "past_due", "Past Due"
-        UNPAID = "unpaid", "Unpaid"
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null = True, blank = True)
     active = models.BooleanField(default=True)
@@ -137,6 +138,12 @@ class UserSubscription(models.Model):
 
     def get_absolute_url(self):
         return reverse("user_subscription")
+    
+    def get_cancel_url(self):
+        return reverse("user_subscription_cancel")
+    
+    def is_active_status(self):
+        return self.status in [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING]
     
     @property
     def plan_name(self):

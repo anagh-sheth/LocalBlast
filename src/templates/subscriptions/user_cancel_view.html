@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} - Home Page
+{% endblock title %}
+
+{% block page_title %}
+Your Subscription - {{ block.super }}
+{% endblock page_title %}
+
+{% block content %}
+{% if subscription.is_active_status %}
+<h1 class="text-center">Are you sure you want to cancel your subscription?</h1>
+<p>Plan Name: {{ subscription.plan_name }}</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+</form>
+
+{% else %}
+<h1 class="text-center">Your subscription is not active</h1>
+{% endif %}
+
+{% endblock %}
+ 

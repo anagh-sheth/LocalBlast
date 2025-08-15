@@ -3,9 +3,120 @@
 <head>
     <title>{% block head_title %}LocalBlast{% endblock head_title %}</title>
     {% include 'base/css.html' %}
+    
+    <style>
+        .message-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 400px;
+            min-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideInRight 0.3s ease-out;
+            border: none;
+        }
+        
+        .message-popup.alert-success {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .message-popup.alert-error {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+        }
+        
+        .message-popup.alert-warning {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+        }
+        
+        .message-popup.alert-info {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+        
+        .message-popup .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+        
+        .message-popup .btn-close:hover {
+            opacity: 1;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .message-popup.fade-out {
+            animation: slideOutRight 0.3s ease-in forwards;
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     {% include 'nav/navbar.html' %}
+    
+    <!-- Enhanced Django messages -->
+    {% if messages %}
+    <div id="messages-container">
+        {% for message in messages %}
+        <div class="alert message-popup alert-{{ message.tags }} alert-dismissible fade show" role="alert" data-message-id="{{ forloop.counter }}">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <strong>
+                        {% if message.tags == 'success' %}✓ Success{% elif message.tags == 'error' %}✗ Error{% elif message.tags == 'warning' %}⚠ Warning{% else %}ℹ Info{% endif %}
+                    </strong>
+                    <br>
+                    {{ message }}
+                </div>
+                <button type="button" class="btn-close ms-2" onclick="dismissMessage(this)" aria-label="Close"></button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <script>
+        // Auto-dismiss messages after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const messages = document.querySelectorAll('.message-popup');
+            messages.forEach(function(message) {
+                setTimeout(function() {
+                    dismissMessage(message.querySelector('.btn-close'));
+                }, 5000);
+            });
+        });
+        
+        function dismissMessage(button) {
+            const message = button.closest('.message-popup');
+            message.classList.add('fade-out');
+            setTimeout(function() {
+                message.remove();
+            }, 300);
+        }
+    </script>
+    {% endif %}
+    
     {% block content %}
     {% endblock content %}
     {% include 'base/js.html' %}

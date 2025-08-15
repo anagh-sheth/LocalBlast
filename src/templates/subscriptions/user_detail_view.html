@@ -14,6 +14,9 @@ Your Subscription - {{ block.super }}
     {% csrf_token %}
     <button type="submit" class="btn btn-primary">Refresh</button>
 </form>
+
+<a href="{{ subscription.get_cancel_url }}" class="btn btn-danger">Cancel Subscription</a> 
+
 <p>Status: {{ subscription.status }}</p>
 <p>Plan: {{ subscription.plan_name }}</p>
 <p>Current Period Start: {{ subscription.current_period_start }}</p>
