@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Q
+
 from django.contrib.auth.models import Group, Permission
 from django.db.models.signals import post_save
 from django.urls import reverse
@@ -122,6 +124,29 @@ class SubscriptionStatus(models.TextChoices):
     PAST_DUE = "past_due", "Past Due"
     UNPAID = "unpaid", "Unpaid"
 
+class UserSubscriptionQuerySet(models.QuerySet):
+    def by_active_trailing(self):
+        return self.filter(Q(status=SubscriptionStatus.ACTIVE) | Q(status=SubscriptionStatus.TRIALING))
+    
+    def by_user_ids(self, user_ids=None):
+        if isinstance(user_ids, list):
+            return self.filter(user_id__in=user_ids)
+        elif isinstance(user_ids, int):
+            return self.filter(user_id__in=[user_ids])
+        elif isinstance(user_ids, str):
+            return self.filter(user_id=user_ids)
+        return self
+
+class UserSubscriptionManager(models.Manager):
+    def get_queryset(self):
+        return UserSubscriptionQuerySet(self.model, using=self._db)
+        
+  #  def by_user_ids(self, user_ids=None):
+  #      return self.get_queryset().by_user_ids(user_ids=user_ids)
+
+
+    
+
 class UserSubscription(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -134,6 +159,9 @@ class UserSubscription(models.Model):
     current_period_end = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     cancel_at_period_end = models.BooleanField(default=False)
     status = models.CharField(max_length=20, null=True, blank=True, choices=SubscriptionStatus.choices)
+
+    objects = UserSubscriptionManager()
+
 
 
     def get_absolute_url(self):
