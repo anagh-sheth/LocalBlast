@@ -1,13 +1,16 @@
-name: Hello World
+name: 1 - Hello World GitHub actions
 
 on:
-  push:
-    branch:
-      - main
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '30 15 * * *'
+  # push: # git push
+  #   branches:
+  #     - main
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello World
-        run: echo "Hello World"
+      - name: Hello there
+        run: echo "hello"
