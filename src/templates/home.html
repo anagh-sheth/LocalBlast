@@ -1,19 +1,290 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ block.super }} - Home Page
+{{ block.super }} - Boost Your Google Maps Rankings
 {% endblock title %}
 
 {% block page_title %}
-Home Page - {{ block.super }}
+Boost Your Google Maps Rankings - {{ block.super }}
 {% endblock page_title %}
 
 {% block content %}
-<p> Hello again!</p>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Dominate <span class="text-blue-600">Google Maps</span><br>
+                <span class="text-3xl md:text-5xl text-gray-700">with Local SEO</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Get automated SEO audit reports and actionable checklists to boost your local business rankings and attract more customers.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="{% url 'pricing' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    Start Free Trial
+                </a>
+                <a href="#how-it-works" class="border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300">
+                    See How It Works
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hero Image/Illustration -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Your SEO Audit Report</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Google My Business Optimization</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Local Citation Analysis</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Review Management Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-blue-600 mb-2">85%</div>
+                        <div class="text-gray-600">Average ranking improvement</div>
+                        <div class="text-sm text-gray-500 mt-2">Based on 500+ local businesses</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-{% include "snippets/welcome-user-msg.html" %}
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How LocalBlast Works</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Get actionable insights to improve your Google Maps rankings in just 3 simple steps
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Step 1 -->
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-white text-2xl font-bold">1</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Connect Your Business</h3>
+                <p class="text-gray-600">
+                    Simply enter your business name and location. We'll automatically analyze your current Google Maps presence.
+                </p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-white text-2xl font-bold">2</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Get Your Audit Report</h3>
+                <p class="text-gray-600">
+                    Receive a comprehensive SEO audit with specific recommendations to improve your local search rankings.
+                </p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-white text-2xl font-bold">3</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Implement & Rank Higher</h3>
+                <p class="text-gray-600">
+                    Follow our actionable checklists to implement changes and watch your Google Maps rankings improve.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<p>Page visits: {{ page_visit_count }}</p>
-<p>Total visits: {{ total_visits }}</p>
+<!-- Features Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Everything You Need to Dominate Local Search</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Comprehensive tools and insights designed specifically for local businesses
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Automated SEO Audits</h3>
+                <p class="text-gray-600">
+                    Get detailed analysis of your Google My Business profile, citations, reviews, and local SEO factors.
+                </p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Actionable Checklists</h3>
+                <p class="text-gray-600">
+                    Step-by-step checklists with specific tasks to improve your local search rankings and visibility.
+                </p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Ranking Tracking</h3>
+                <p class="text-gray-600">
+                    Monitor your progress with detailed tracking of your Google Maps rankings and local search performance.
+                </p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Local Citation Management</h3>
+                <p class="text-gray-600">
+                    Identify and fix inconsistent business information across directories and local listings.
+                </p>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Review Management</h3>
+                <p class="text-gray-600">
+                    Get insights on your review performance and strategies to improve your online reputation.
+                </p>
+            </div>
+            
+            <!-- Feature 6 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Weekly Reports</h3>
+                <p class="text-gray-600">
+                    Receive weekly updates on your local SEO progress and new opportunities to improve rankings.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-blue-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Dominate Google Maps?
+        </h2>
+        <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            Join hundreds of local businesses that have improved their rankings and attracted more customers with LocalBlast.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="{% url 'pricing' %}" class="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Start Free Trial
+            </a>
+            <a href="#" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300">
+                Schedule Demo
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">500+</div>
+                <div class="text-gray-400">Local Businesses</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">85%</div>
+                <div class="text-gray-400">Average Ranking Improvement</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">24/7</div>
+                <div class="text-gray-400">Automated Monitoring</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">4.9/5</div>
+                <div class="text-gray-400">Customer Satisfaction</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Welcome message for logged-in users -->
+{% if user.is_authenticated %}
+<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
+    <div class="flex">
+        <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+            </svg>
+        </div>
+        <div class="ml-3">
+            <p class="text-sm text-blue-700">
+                Welcome back, {{ user.username }}! Ready to boost your Google Maps rankings?
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Page visit stats (hidden on production) -->
+{% if debug %}
+<div class="bg-gray-100 p-4 rounded-lg mt-8">
+    <p class="text-sm text-gray-600">Page visits: {{ page_visit_count }}</p>
+    <p class="text-sm text-gray-600">Total visits: {{ total_visits }}</p>
+</div>
+{% endif %}
 
 {% endblock %}

@@ -20,7 +20,7 @@ from auth import views as auth_views
 from checkouts import views as checkout_views
 from subscriptions import views as subscription_views
 
-from localblast.views import home_view, about_view, pw_protected_view, user_only_view, staff_only_view
+from localblast.views import home_view, about_view, services_view, pw_protected_view, user_only_view, staff_only_view
 
 
 urlpatterns = [
@@ -28,6 +28,7 @@ urlpatterns = [
   #  path('login/', auth_views.login_view),
   #  path('register/', auth_views.register_view),
     path('about/', about_view),
+    path('services/', services_view, name='services'),
     path("checkout/sub-price/<int:price_id>/", 
             checkout_views.product_price_redirect_view,
             name='sub-price-checkout'
