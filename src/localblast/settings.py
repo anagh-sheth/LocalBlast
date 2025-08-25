@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "profiles",
     "subscriptions",
     "customers",
+    "features",
     # third party apps
     'allauth',
     'allauth.account',
