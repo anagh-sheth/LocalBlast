@@ -86,7 +86,7 @@ def start_checkout_session(customer_id,
         mode="subscription",
     )
     if raw:
-        return True
+        return response
     return response.url
 
 def get_checkout_session(stripe_id, raw=True):

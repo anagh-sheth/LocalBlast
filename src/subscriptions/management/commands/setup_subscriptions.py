@@ -43,7 +43,7 @@ class Command(BaseCommand):
             subscription=basic_sub,
             interval=SubscriptionPrice.IntervalChoices.MONTHLY,
             defaults={
-                'price': 29.99,
+                'price': 0.00,
                 'featured': True,
                 'order': 1,
             }
@@ -58,7 +58,7 @@ class Command(BaseCommand):
             subscription=basic_sub,
             interval=SubscriptionPrice.IntervalChoices.YEARLY,
             defaults={
-                'price': 299.99,  # ~17% discount for yearly
+                'price': 0.00,  # ~17% discount for yearly
                 'featured': True,
                 'order': 2,
             }
@@ -73,7 +73,7 @@ class Command(BaseCommand):
             subscription=pro_sub,
             interval=SubscriptionPrice.IntervalChoices.MONTHLY,
             defaults={
-                'price': 79.99,
+                'price': 19.99,
                 'featured': True,
                 'order': 3,
             }
@@ -88,7 +88,7 @@ class Command(BaseCommand):
             subscription=pro_sub,
             interval=SubscriptionPrice.IntervalChoices.YEARLY,
             defaults={
-                'price': 799.99,  # ~17% discount for yearly
+                'price': 199.99,  # ~17% discount for yearly
                 'featured': True,
                 'order': 4,
             }
